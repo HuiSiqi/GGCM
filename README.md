@@ -34,29 +34,31 @@ Our method is target set specific, and we take the cub target set under the 5-wa
 1. training for Baseline
 ```
 python3 train_metaTeacher.py --modelType St-Net --dataset miniImagenet --name St-Net-1shot --train_aug --warmup baseline --n_shot 1
+python train_baseline.py --method Baseline --stop_epoch 400 --modelType Student --target_set cub --name Baseline/CUB/1shot --train_aug --warmup baseline --n_shot 1
 ```
+- DATASET: cub/cars/places/plantae  
 
 2. testing for Baseline
 ```
-python3 train_metaTeacher.py --modelType St-Net --dataset miniImagenet --name St-Net-1shot --train_aug --warmup baseline --n_shot 1
+python test.py --method Baseline --name  Baselien/CUB/1shot --dataset cub --save_epoch 399 --n_shot 1
 ```
-
+- DATASET: cub/cars/places/plantae
+  
 3. training for GGCM
 ```
-python test.py --name St-Net-1shot --dataset DATASET --save_epoch 399 --n_shot 1
+python train.py  --method GGCM --aug_rate 0.5 --meta_layers 3 4 --lconsist 5.0  --stop_epoch 400 --modelType Student --target_set cub --name GGCM/CUB/1shot \
+--train_aug --warmup baseline --n_shot $shot
 ```
-- DATASET: miniImagenet/cub/cars/places/plantae  
+- DATASET: cub/cars/places/plantae  
 
 4. testing for GGCM
 ```
-python test_twoPaths.py --name ME-D2N-target-set-cub-1shot --target_set cub --dataset DATASET --save_epoch 399 --n_shot 1
+python test.py --method GGCM --name  GGCM/CUB/1shot --dataset cub --save_epoch 399 --n_shot 1
 ```
-- DATASET: miniImagenet/cub
+- DATASET: cub/cars/places/plantae  
 
 
 # 5 pretrained models
-We also provide our pretrained models as follows: (coming soon
-
-
+We also provide our pretrained models as follows: (coming soon)
 
 - just take them in the right dir. Take GGCM for the 1-shot as an example, rename it as 399.tar, and move it to the `ouput/checkpoints/GGCM-target-set-cub-1shot/`
