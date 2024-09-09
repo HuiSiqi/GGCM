@@ -53,9 +53,3 @@ python train.py  --method GGCM --aug_rate 0.5 --meta_layers 3 4 --lconsist 5.0  
 python test.py --method GGCM --name  GGCM/CUB/1shot --dataset cub --save_epoch 399 --n_shot 1
 ```
 - DATASET: cub/cars/places/plantae  
-
-
-# 5 pretrained models
-We also provide our pretrained models as follows: (coming soon)
-
-- just take them in the right dir. Take GGCM for the 1-shot as an example, rename it as 399.tar, and move it to the `ouput/checkpoints/GGCM-target-set-cub-1shot/`
