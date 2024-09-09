@@ -31,7 +31,6 @@ Our method is target set specific, and we take the cub target set under the 5-wa
 
 1. training for Baseline
 ```
-python3 train_metaTeacher.py --modelType St-Net --dataset miniImagenet --name St-Net-1shot --train_aug --warmup baseline --n_shot 1
 python train_baseline.py --method Baseline --stop_epoch 400 --modelType Student --target_set cub --name Baseline/CUB/1shot --train_aug --warmup baseline --n_shot 1
 ```
 - DATASET: cub/cars/places/plantae  
