@@ -212,7 +212,7 @@ class GnnNetStudent(MetaTemplate):
 
         return fsl_scores, fsl_loss, cls_loss
 
-    def reservoir_sampling(self, p, aug_rate):
+    def generate_mask(self, p, aug_rate):
         # k = torch.rand_like(p) ** (1 / p)
         _, indices = p.topk(int(p.shape[1] * aug_rate), dim=1)
         mask = torch.ones_like(p)
@@ -247,7 +247,7 @@ class GnnNetStudent(MetaTemplate):
             tar_grad = torch.autograd.grad(A_ds_loss_fsl, l2, create_graph=False,
                                            allow_unused=True, retain_graph=True)
             tar_scores = [(tg * feat).detach().sum((0, 2, 3))  for tg, feat in zip(tar_grad, l2)]
-            masks = [self.reservoir_sampling(a.view(1,-1,1,1),self.args.aug_rate) for a in tar_scores]
+            masks = [self.generate_mask(a.view(1,-1,1,1),self.args.aug_rate) for a in tar_scores]
             self.train()
             self.MSA1 = masks[0]
             self.MSA2 = masks[1]
